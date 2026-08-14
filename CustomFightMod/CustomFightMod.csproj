@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{819FED5B-F82D-4A8E-BCEB-478E8A564142}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CustomFightMod</RootNamespace>
+    <AssemblyName>CustomFightMod</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\net6\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppAK.Wwise.Unity.API">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Il2CppAK.Wwise.Unity.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppAK.Wwise.Unity.API.WwiseTypes">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Il2CppAK.Wwise.Unity.API.WwiseTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cppcom.gameframe.smrhythmengine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="Il2CppCRL.SpriteBinding">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Il2CppCRL.SpriteBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppI2.Localization">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Il2CppI2.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppNocturne.Runtime">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Il2CppNocturne.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSirenix.OdinInspector.Modules.Unity.Addressables">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Il2CppSirenix.OdinInspector.Modules.Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSirenix.Serialization">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Core">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Il2CppSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MelonLoader">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\net472\MelonLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\net6\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.Addressables, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>E:\my App\steam\steamapps\common\Nocturne Demo\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infos.cs" />
+    <Compile Include="OverrideCustomAnimator.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
