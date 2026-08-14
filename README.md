@@ -1,7 +1,7 @@
 # CustomFightMod
 What is CustomFightMod ? It's a mod for Nocturne allowing everyone to create / import custom fight in the game for the Arcde.
 
-# FOR KNOW THE MOD IS A BETA - THERE'S COULD BE ISSUES, BE AWARE WITH WHICH SONG YOU ARE IMPORTING 
+# FOR KNOW THE MOD IS A BETA - THERE'S COULD BE ISSUES, BE AWARE WITH WHICH SONG YOU ARE IMPORTING, ALSO MAKE SUR YOUR USING X-MOD AND NOT M-MOD FOR THE SPEED MOD IN THE SETTINGS
 
 # How works the mod ?
 
