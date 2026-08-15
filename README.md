@@ -3,6 +3,12 @@ What is CustomFightMod ? It's a mod for Nocturne allowing everyone to create / i
 
 # FOR KNOW THE MOD IS A BETA - THERE'S COULD BE ISSUES, BE AWARE WITH WHICH SONG YOU ARE IMPORTING, ALSO MAKE SUR YOUR USING X-MOD AND NOT M-MOD FOR THE SPEED MOD IN THE SETTINGS
 
+# Todo list, what's next ?
+- ### load custom prefab
+- ### custom enemy data
+- ### easy enemy creation ( without prefab and placeholders )
+- ### easy custom song ( no soundbank if possibe )
+
 # How works the mod ?
 
 The mod use a `packs.json` file to store and load the customs fights, this JSON contains a **category** and a list of **directory**.
