@@ -22,6 +22,8 @@ namespace CustomFightMod
         public static bool initate = false;
         public static bool isCustom = false;
 
+        public static int showCount = 0;
+
         public static string currentSongName = "";
         public static System.Collections.Generic.Dictionary<string, Infos> infosDico = new System.Collections.Generic.Dictionary<string, Infos>();
         public static System.Collections.Generic.Dictionary<string, string> pathFolderDico = new System.Collections.Generic.Dictionary<string, string>();
@@ -112,52 +114,39 @@ namespace CustomFightMod
         }
 
         // -------------- LOAD FIGHTS -------------- //
-
-        static void loadPacksJson(GenericArcadeMenuV2 menu)
+        static void loadCategories(GenericArcadeMenuV2 menu)
         {
             ArcadeDatabase arcadeDatabase = menu.arcadeDatabase;
 
             int categoryIndex = 2;
 
-            string jsonPath = Path.Combine(MOD_FOLDER, "packs.json");
+            string[] subFolders = Directory.GetDirectories(MOD_FOLDER);
 
-            if (!File.Exists(jsonPath)) {
-                MelonLogger.Msg(System.ConsoleColor.Yellow, "'packs.json' NOT FOUND, on has been create !");
-                File.WriteAllText(jsonPath, "{}");
-                return;
-            }
+            CombatPlayerScore score = new CombatPlayerScore();
+            score.score = 0;
+            score.totalNotes = 1;
+            score.maxScore = 1;
+            score.combo = 0;
+            score.difficulties = new List<NocturneDifficulty>();
+            score.grades = new List<NoteGradeScore>();
 
-            string jsonText = File.ReadAllText(jsonPath);
-
-            if (jsonText.Clone().ToString().Replace("{", "").Replace("}","").Length < 0) {
-                MelonLogger.Msg(System.ConsoleColor.Yellow, "'packs.json' empty no custom fight has been load !");
-                return;
-            }
-
-            System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>> zipMap 
-                = JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>>>(jsonText);
-
-            foreach (var category in zipMap)
+            foreach (string category in subFolders)
             {
-                MelonLogger.Msg(System.ConsoleColor.DarkGray, "NEW CATEGORY ADD - " + category.Key + " :");
 
-                NocturneString categoryDisplayName = new NocturneString(new LocalizedString("Custom Category"), category.Key);
+                string categoryName = Path.GetFileName(category);
+
+                MelonLogger.Msg(System.ConsoleColor.DarkGray, "NEW CATEGORY ADD - " + categoryName + " :");
+
+                NocturneString categoryDisplayName = new NocturneString(new LocalizedString("Custom Category"), categoryName);
                 NocturneString shortDisplayName = new NocturneString(new LocalizedString("Custom"), "Custom " + (categoryIndex - 1));
                 List<ArcadeSongInfo> arcadeSongs = new List<ArcadeSongInfo>();
 
                 int songIndex = 0;
 
-                CombatPlayerScore score = new CombatPlayerScore();
-                score.score = 0;
-                score.totalNotes = 1;
-                score.maxScore = 1;
-                score.combo = 0;
-                score.difficulties = new List<NocturneDifficulty>();
-                score.grades = new List<NoteGradeScore>();
+                string[] subSubFolders = Directory.GetDirectories(Path.Combine(MOD_FOLDER, category));
 
-                foreach (var song in category.Value) 
+                foreach (string songFolder in subSubFolders)
                 {
-                    string songFolder = Path.Combine(MOD_FOLDER, song);
                     string songInfo = Path.Combine(songFolder, "songinfo.json");
 
                     if (!File.Exists(songInfo)) continue;
@@ -168,14 +157,15 @@ namespace CustomFightMod
 
                     ArcadeSongInfo arcadeSongInfo = createSongInfo(songIndex, songFolder, infos);
 
-                    if (arcadeSongInfo == null) 
+                    if (arcadeSongInfo == null)
                     {
                         MelonLogger.Error("{} n'a pas pu être initialisé car des données sont manquantes !", infos.songname);
                         continue;
                     }
 
-                    if (!GameDataManager.Scores.HasAnyScore(arcadeSongInfo.DisplayName)) {
-                        MelonLogger.Msg(GameDataManager.Scores.TryRecordScore(arcadeSongInfo.DisplayName, 0, score).Item2);
+                    if (!GameDataManager.Scores.HasAnyScore(arcadeSongInfo.DisplayName))
+                    {
+                        GameDataManager.Scores.TryRecordScore(arcadeSongInfo.DisplayName, 0, score);
                         GameDataManager.SaveFile.SaveScores();
                     }
 
@@ -183,12 +173,12 @@ namespace CustomFightMod
 
                     MelonLogger.Msg(System.ConsoleColor.DarkGray, "  - " + infos.songname);
 
-                    songIndex++;   
+                    songIndex++;
                 }
 
                 if (arcadeSongs.Count < 1)
                 {
-                    MelonLogger.Msg(System.ConsoleColor.Yellow, "Empty category found - " + category.Key + " : not created");
+                    MelonLogger.Msg(System.ConsoleColor.Yellow, "Empty category found - " + categoryName + " : not created");
                     continue;
                 }
 
@@ -366,7 +356,46 @@ namespace CustomFightMod
                 if (__instance == null) return;
                 if (__instance.arcadeDatabase == null) return;
                 if (!initate){
-                    loadPacksJson(__instance);
+                    loadCategories(__instance);
+                }
+            }
+        }
+
+        [HarmonyLib.HarmonyPatch(typeof(CombatNoteFieldView), "ShowColumns")]
+        class FiveColumn
+        {
+            static void Postfix(CombatOptions combatOptions)
+            {
+                if (combatOptions == null) return;
+
+                if (!infosDico.ContainsKey(currentSongName)) return;
+
+                if (infosDico[currentSongName] == null) return;
+
+                if (!infosDico[currentSongName].five_columns) return;
+
+                AnimationProperty animationProperty = new AnimationProperty();
+
+                animationProperty.name = "Five Instant";
+                animationProperty.intValue = 0;
+                animationProperty.boolValue = false;
+                animationProperty.floatValue = 0;
+                animationProperty.type = AnimationProperty.PropertyType.Trigger;
+
+                combatOptions.columnAnimatorSettings.Clear();
+                combatOptions.columnAnimatorSettings.Add(animationProperty);
+
+                if (showCount == 0)
+                {
+                    showCount++;
+                    CombatNoteFieldView combatNoteFieldView = UnityEngine.Object.FindObjectOfType<CombatNoteFieldView>();
+                    combatNoteFieldView.ShowColumns(combatOptions);
+                }
+                else 
+                {
+                    showCount++;
+                    if (showCount == 3)
+                        showCount = 0;
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CustomFightMod
 {
@@ -20,5 +21,6 @@ namespace CustomFightMod
         public uint resumeevent_id;
         public uint pauseevent_id;
         public uint stopevent_id;
+        public bool five_columns;
     }
 }
