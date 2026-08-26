@@ -11,9 +11,9 @@ What is CustomFightMod ? It's a mod for Nocturne allowing everyone to create / i
 
 # How works the mod ?
 
-The mod use a `packs.json` file to store and load the customs fights, this JSON contains a **category** and a list of **directory**.
+The mod use a **folders** to store and load the customs fights, you need a **category folder** one and inside of this one, for each **song**, you need another **folder**.
 
-In the directory, you need at least 3 essential things, the `songinfo.json`, a `soundbank.bnk` and a `beatmap` (.ms or .txt).
+In the song directory, you need at least 3 essential things, the `songinfo.json`, a `soundbank.bnk` and a `beatmap` (.ms or .txt).
 You also going to need a `icon.png` for the icon of the song.
 
 If your using custom enemy, ensure your image are in the **.png** format.
@@ -21,7 +21,7 @@ For the moment, to allow custom enemy, we need to override an existing one, so y
 
 # Import a custom fight
 
-- make sure the folder contains everythings the mod need to load it, and put it in the CustomFight folder. The in the packs.json just add what the author of it say or if nothing was say, create a category ( refere to 3 - Edit the songinfo.json and the packs.json )
+- make sure the folder contains everythings the mod need to load it. If it's a category with song inside just put it in the CustomFight folder, otherwise if it's not a category, create a folder and name it, then put the song folder inside. **The mod no longer use packs.json**
 
 # Create a custom fight
 
@@ -50,7 +50,7 @@ You will need a .wav of your song.
 
   - step 5.2 : Ajust the music settings in the 'General Settings' ( sometime the 'Volume' need to be change )
 
-  - step 6 : In the Project Explorer go to 'Events', search 'Events' and you normaly have 'Default Work Unit', Right Click on it and select 'New Child' -> 'Event'. We will create 4 main Events, START, STOP, PAUSE and RESUME.
+  - step 6 : In the Project Explorer go to 'Events', search 'Events' and you normaly have 'Default Work Unit', Right Click on it and select 'New Child' -> 'Event'. We will create 4 main Events, START, STOP, PAUSE and RESUME. ( Important, I don't often use Wwise so I'm not sure but name you event with different name for each song )
 
   - step 7 : Click on your created event, then in the event tab, Right Click -> 'New Action' and select the action you need, here it's play ( also when you have multiple choice, take the basic one ). Then in the 'Target' Right Click and select 'Browse...', in the 'Interactive Music Hierarchy' search you song and select it and 'OK'
 
@@ -72,10 +72,8 @@ You will need a .wav of your song.
     <img width="240" height="80" alt="image" src="https://github.com/user-attachments/assets/3ea2d5df-14bc-4928-9492-cf506710ef62" />
 
     <img width="250" height="31" alt="image" src="https://github.com/user-attachments/assets/888c6c7b-7f46-491c-85b5-ebcdc074db9b" />
-
-  - After you done that, in the `packs.json` you can create a category or add your directory in an existing one like this
-    
-    <img width="384" height="117" alt="image" src="https://github.com/user-attachments/assets/d72f6ca7-5754-4cfa-9f6a-9faa47a5e927" />
+  
+  - If your song need 5k ( five columns ), you need to set `"five_columns" : "true"` else set it to `"false"`
  
     
     
