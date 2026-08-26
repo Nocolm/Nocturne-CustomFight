@@ -1,0 +1,9 @@
+Event	ID	Name			Wwise Object Path	Notes
+	2132638898	Pause_CustomCombatMusic			\Default Work Unit\Pause_CustomCombatMusic	
+	2640593402	Stop_CustomCombatMusic			\Default Work Unit\Stop_CustomCombatMusic	
+	3063117920	Play_CustomCombatMusic			\Default Work Unit\Play_CustomCombatMusic	
+	3462355215	Resume_CustomCombatMusic			\Default Work Unit\Resume_CustomCombatMusic	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	648945269	Megalovania	C:\Users\Noé Lemoine\Documents\WwiseProjects\Nocturne_Cutsom_Music\.cache\Windows\SFX\Megalovania_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\CustomPlaylistContainer\Megalovania\Megalovania		24701280
+
